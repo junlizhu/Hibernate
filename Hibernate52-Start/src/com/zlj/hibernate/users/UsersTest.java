@@ -17,22 +17,22 @@ public class UsersTest {
 
 	private Session session = null;
 	private SessionFactory sessionFactory = null;
-
+	
 	/**
-	 * 获取session
+	 * 鑾峰彇session
 	 * 
 	 * @return
 	 */
 	public Session getSession() {
-		// 读取配置文件，创建sessionFactory对象
+		// 璇诲彇閰嶇疆鏂囦欢锛屽垱寤簊essionFactory瀵硅薄
 		sessionFactory = new Configuration().configure().buildSessionFactory();
-		// 创建session对象
+		// 鍒涘缓session瀵硅薄
 		session = sessionFactory.openSession();
 		return session;
 	}
 
 	/**
-	 * 关闭session
+	 * 鍏抽棴session
 	 */
 	public void closeSession() {
 		if (session != null)
@@ -42,48 +42,48 @@ public class UsersTest {
 	}
 
 	/**
-	 * 插入数据
+	 * 鎻掑叆鏁版嵁
 	 * 
 	 * @param users
 	 * @return
 	 */
 	public Long insert(Users users) {
 		session = getSession();
-		Transaction transaction = session.beginTransaction();// 开始事务
-		Long id = (Long) session.save(users);// 保存表
+		Transaction transaction = session.beginTransaction();// 寮�濮嬩簨鍔�
+		Long id = (Long) session.save(users);// 淇濆瓨琛�
 		transaction.commit();
 		closeSession();
 		return id;
 	}
 
 	/**
-	 * 更新数据
+	 * 鏇存柊鏁版嵁
 	 * 
 	 * @param users
 	 */
 	public void update(Users users) {
 		session = getSession();
-		Transaction transaction = session.beginTransaction();// 开始事务
+		Transaction transaction = session.beginTransaction();// 寮�濮嬩簨鍔�
 		session.update(users);
 		transaction.commit();
 		closeSession();
 	}
 
 	/**
-	 * 删除表数据
+	 * 鍒犻櫎琛ㄦ暟鎹�
 	 * 
 	 * @param users
 	 */
 	public void delete(Users users) {
 		session = getSession();
-		Transaction transaction = session.beginTransaction();// 开始事务
+		Transaction transaction = session.beginTransaction();// 寮�濮嬩簨鍔�
 		session.delete(users);
 		transaction.commit();
 		closeSession();
 	}
 
 	/**
-	 * 获取一条数据
+	 * 鑾峰彇涓�鏉℃暟鎹�
 	 * 
 	 * @param id
 	 * @return
@@ -94,8 +94,9 @@ public class UsersTest {
 		closeSession();
 		return users;
 	}
+
 	/**
-	 * 获取列表
+	 * 鑾峰彇鍒楄〃
 	 * 
 	 * @return
 	 */
@@ -103,7 +104,7 @@ public class UsersTest {
 	public List<Users> getUsersList() {
 		session = getSession();
 		// List<Users> usersList = (List<Users>)session.createQuery("from
-		// Users").list(); 旧版的方法！
+		// Users").list(); 鏃х増鐨勬柟娉曪紒
 		List<Users> usersList = (List<Users>) session.createQuery("from Users").getResultList();
 		closeSession();
 		return usersList;
@@ -119,7 +120,7 @@ public class UsersTest {
 
 		Users users = new Users();
 		users.setId(6L);
-		//test.delete(users);
+		// test.delete(users);
 
 		// logger.info(test.getUsersById(5L));
 		List<Users> usersList = test.getUsersList();
